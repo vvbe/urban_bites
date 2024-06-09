@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            /* Add background image */
+            background-image: url('https://previews.123rf.com/images/angelmaxmixam/angelmaxmixam1601/angelmaxmixam160100056/50819649-wallpaper-menu-for-pizzerias-and-restaurants-image-products.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            background-color: #fff; /* White color */
+            padding: 20px; /* Padding around the content */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+        }
+        h1 {
+            margin-top: 0;
+        }
+        #total, #items {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #ff6600; /* Orange color */
+            color: #fff; /* White text */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Total and Items</h1>
+
+        <div id="total"></div>
+        <div id="items"></div>
+
+        <button id="pay-now">Pay Now</button>
+    </div>
+
+    <script>
+        // Retrieve parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const total = urlParams.get('total');
+        const items = JSON.parse(urlParams.get('items'));
+
+        // Display total and items
+        document.getElementById('total').textContent = `Total Price (including GST): Rs. ${total}`;
+        document.getElementById('items').textContent = 'Selected Items:';
+        items.forEach(item => {
+            const itemElement = document.createElement('p');
+            itemElement.textContent = `${item.name} x ${item.quantity}`;
+            document.getElementById('items').appendChild(itemElement);
+        });
+
+        // Button action
+        document.getElementById('pay-now').addEventListener('click', function() {
+            // Replace 'new-page.html' with the filename of the new page you want to open
+            window.location.href = 'new-page.html';
+        });
+    </script>
+</body>
+</html>
+

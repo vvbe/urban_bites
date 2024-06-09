@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Hotel's Name</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .background-image {
+            background-image: url('https://wallpapercave.com/wp/wp3105448.jpg'); /* Specify the URL of your background image */
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: transparent; /* Transparent background */
+            color: white;
+            border: 2px solid white; /* White border */
+            border-radius: 20px; /* Adjusted border-radius for more curved corners */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: rgba(255,255,255,0.3); /* White background with opacity on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="background-image">
+        <button class="button" onclick="window.location.href = 'order_options.html';"><strong>Start Order</strong></button>
+    </div>
+</body>
+</html>
+

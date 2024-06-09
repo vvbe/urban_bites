@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Items</title>
+    <style>
+        body {
+            background-image: url('https://c8.alamy.com/comp/2J5CAP0/beautiful-hand-drawn-delicious-fast-food-seamless-pattern-tasty-background-great-for-textiles-wrapping-packaging-wallpapers-vector-design-2J5CAP0.jpg'); /* Specify the path to your background image */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background for better readability */
+            border-radius: 10px;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .food-item {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .food-item h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.7); /* Transparent white background */
+            padding: 10px; /* Add padding for better readability */
+            border-radius: 5px; /* Add border radius for styling */
+        }
+        .food-item p {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .orange-button {
+            background-color: #ff6600;
+            color: #fff;
+        }
+        .white-button {
+            background-color: #fff;
+            color: #000;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .next-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .cart-count {
+            color: #080807;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MENU</h1>
+        
+        <!-- List of food items with prices and options -->
+        <div class="food-list">
+            <div class="food-item">
+                <h2>Chicken wings</h2>
+                <p>Price: Rs.120</p>
+                <button class="add-to-cart orange-button">Add</button>
+                <button class="remove-from-cart orange-button">Remove</button>
+                <span class="cart-count">0</span> 
+            </div>
+            <div class="food-item">
+                <h2>Shawarma</h2>
+                <p>Price: Rs.99</p>
+                <button class="add-to-cart orange-button">Add</button>
+                <button class="remove-from-cart orange-button">Remove</button>
+                <span class="cart-count">0</span> 
+            </div>
+            <div class="food-item">
+                <h2>Noodles</h2>
+                <p>Price: Rs.90</p>
+                <button class="add-to-cart orange-button">Add</button>
+                <button class="remove-from-cart orange-button">Remove</button>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="food-item">
+                <h2>Burger</h2>
+                <p>Price: Rs.99</p>
+                <button class="add-to-cart orange-button">Add</button>
+                <button class="remove-from-cart orange-button">Remove</button>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="food-item">
+                <h2>Momos</h2>
+                <p>Price: Rs.100</p>
+                <button class="add-to-cart orange-button">Add</button>
+                <button class="remove-from-cart orange-button">Remove</button>
+                <span class="cart-count">0</span> 
+            </div>
+            <div class="food-item">
+                <h2>Ice cream</h2>
+                <p>Price: Rs.50</p>
+                <button class="add-to-cart orange-button">Add</button>
+                <button class="remove-from-cart orange-button">Remove</button>
+                <span class="cart-count">0</span> 
+            </div>
+            <div class="food-item">
+                <h2>Milk shake</h2>
+                <p>Price: Rs.150</p>
+                <button class="add-to-cart orange-button">Add</button>
+                <button class="remove-from-cart orange-button">Remove</button>
+                <span class="cart-count">0</span> 
+            </div
+        </div>
+
+        <!-- Back and next buttons -->
+        <div class="buttons">
+            <button class="white-button back-button" onclick="goBack()">Back</button>
+            <button class="white-button next-button" onclick="goNext()">Next</button>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle cart functionality and navigation -->
+    <script>
+        // Add event listeners to the buttons for each food item
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', addToCart);
+        });
+
+        document.querySelectorAll('.remove-from-cart').forEach(button => {
+            button.addEventListener('click', removeFromCart);
+        });
+
+        // Function to add item to cart
+        function addToCart(event) {
+            let countSpan = event.target.parentElement.querySelector('.cart-count');
+            let count = parseInt(countSpan.textContent);
+            count++;
+            countSpan.textContent = count;
+        }
+
+        // Function to remove item from cart
+        function removeFromCart(event) {
+            let countSpan = event.target.parentElement.querySelector('.cart-count');
+            let count = parseInt(countSpan.textContent);
+            if (count > 0) {
+                count--;
+                countSpan.textContent = count;
+            }
+        }
+
+        // Function to navigate back
+        function goBack() {
+            window.history.back();
+        }
+
+        // Function to navigate to the next page
+        function goNext() {
+            // Gather selected items and their quantities
+            let selectedItems = [];
+            document.querySelectorAll('.food-item').forEach(item => {
+                let itemName = item.querySelector('h2').textContent;
+                let itemCount = parseInt(item.querySelector('.cart-count').textContent);
+                if (itemCount > 0) {
+                    selectedItems.push({ name: itemName, quantity: itemCount });
+                }
+            });
+
+            // Calculate total price including GST
+            let totalPrice = 0;
+            selectedItems.forEach(item => {
+                switch (item.name) {
+                    case 'Chicken wings':
+                        totalPrice += item.quantity * 120;
+                        break;
+                    case 'Shawarma':
+                        totalPrice += item.quantity * 99;
+                        break;
+                    case 'Noodles':
+                        totalPrice += item.quantity * 90;
+                        break;
+                    case 'Burger':
+                        totalPrice += item.quantity * 99;
+                        break;
+                    case 'Momos':
+                        totalPrice += item.quantity * 100;
+                        break;
+                    case 'Ice cream':
+                        totalPrice += item.quantity * 50;
+                        break;
+                    case 'Milk shake':
+                        totalPrice += item.quantity * 150;
+                        break;
+                    default:
+                        break;
+                }
+            });
+
+            // Calculate GST (assuming 18%)
+            let gst = totalPrice * 0.18;
+            let totalPriceWithGST = totalPrice + gst;
+
+            // Navigate to another page with the total and items
+            let nextPageUrl = `total-page.html?total=${totalPriceWithGST}&items=${JSON.stringify(selectedItems)}`;
+            window.location.href = nextPageUrl;
+        }
+    </script>
+</body>
+</html>
